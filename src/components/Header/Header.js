@@ -8,7 +8,7 @@ const Header = () => {
        
        <div id="user">
            <a href="/create">Create</a>
-           <a href="#">Logout</a>
+           <a href="/logout">Logout</a>
        </div>
        
        <div id="guest">
