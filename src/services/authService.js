@@ -29,13 +29,14 @@ export const register = (email, password) => {
    .then(res => res.json())
 };
 
-export const logout = (token) =>{
-    return fetch(`${baseURL}/users/logout`,{
+export const logout = (token) => {
+    return fetch(`${baseURL}/users/logout`, {
         headers: {
-            'X-Authorizacion': token
+            'X-Authorization': token,
         }
     })
 };
+
 
 export const getUser = () => {
     let username = localStorage.getItem('username');
