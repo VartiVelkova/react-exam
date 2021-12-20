@@ -1,6 +1,9 @@
 import {Routes, Route} from 'react-router-dom';
+import ErrorBoudary from './components/Common/ErrorBoundary.js';
+import GuardedRoute from './components/Common/GuardedRoute.js';
 import Notification from './components/Common/Notification.js';
 import Create from './components/Create/Create.js';
+import Details from './components/Details/Details.js';
 import Footer from './components/Footer/Footer.js';
 import Header from './components/Header/Header.js';
 
@@ -13,6 +16,7 @@ import { NotificationProvider } from './contexts/NotificationContext.js';
 
 function App() {
   return (  
+    <ErrorBoudary>
     <AuthProvider>
       <NotificationProvider>      
         <div id="box">
@@ -20,17 +24,24 @@ function App() {
           <Notification />
           <main>
             <Routes>        
-              <Route path='/' element={<Home />} />
+              <Route path='/home/*' element={<Home />} />
               <Route path='/login' element={<Login />} />
               <Route path='/register' element={<Register />} />
               <Route path='/logout' element={<Logout />} />
               <Route path='/create' element={<Create />} />
+              <Route path='/details/:fishId' element={<Details />} />
+              
+              <Route element={<GuardedRoute />}>
+               
+              </Route>
+
             </Routes>
           </main>
                 <Footer />
           </div>
       </NotificationProvider>
     </AuthProvider>
+    </ErrorBoudary>
   );
 }
 

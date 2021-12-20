@@ -1,56 +1,121 @@
+import { useEffect, useState } from 'react';
+import { Button } from 'react-bootstrap';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useAuthContext } from '../../contexts/AuthContext.js';
+import { types, useNotificationContext } from '../../contexts/NotificationContext.js';
+import useFishState from '../../hooks/useFishState.js';
+import * as fishService from '../../services/fishService.js';
+import * as likeService from '../../services/likeService.js';
+import ConfirmDialog from '../Common/ConfirmDialog/ConfirmDialog.js';
+
+import './Details.css';
+
+ 
+
 const Details = () => {
-    return (
-<section id="game-details">
-    <h1>Game Details</h1>
-    <div className="info-section">
 
-        <div className="game-header">
-            <img className="game-img" src="images/MineCraft.png" />
-            <h1>Bright</h1>
-            <span className="levels">MaxLevel: 4</span>
-            <p className="type">Action, Crime, Fantasy</p>
-        </div>
+    const navigate = useNavigate();
+    const {user} = useAuthContext();
+    const {addNotification} = useNotificationContext();
+    const {fishId} = useParams();
+    const [ fish, setFish ] = useFishState(fishId);
+    const [showDeleteDialog, setShowDeleteDialog] = useState(false);
 
-        <p className="text">
-            Set in a world where fantasy creatures live side by side with humans. A human cop is forced to work
-            with an Orc to find a weapon everyone is prepared to kill for. Set in a world where fantasy
-            creatures live side by side with humans. A human cop is forced
-            to work with an Orc to find a weapon everyone is prepared to kill for.
-        </p>
+    useEffect(() => {
+        likeService.getFishLikes(fishId)
+        .then(likes => {
+            setFish(state => ({ ...state, likes}))
+        })
+    }, [])
 
-        
-        <div className="details-comments">
-            <h2>Comments:</h2>
-            <ul>
-                
-                <li className="comment">
-                    <p>Content: I rate this one quite highly.</p>
-                </li>
-                <li className="comment">
-                    <p>Content: The best game.</p>
-                </li>
-            </ul>
-            
-            <p className="no-comment">No comments.</p>
-        </div>
+    const deleteHandler = (e) => {
+        e.preventDefault();
+        fishService.deleteFish(fishId, user.accessToken)
+        .then(() => {
+            navigate('/')
+        })
+        .finally(() => {
+            setShowDeleteDialog(false)
+        })
+    };
 
-        
+    const deleteClickHandler = (e) => {
+        e.preventDefault();
+        console.log(process.env.NODE_ENV);
+        setShowDeleteDialog(true);
+
+    };
+
+    const ownerButton = (
+        <>
         <div className="buttons">
-            <a href="#" className="button">Edit</a>
-            <a href="#" className="button">Delete</a>
+            <Link to={`/edit/${fish._id}`} className="button">Edit</Link>
+            <Link to="#" className="button" onClick={deleteClickHandler}>Delete</Link>
         </div>
-    </div>
+        </>
+    );
 
-    
-    <article className="create-comment">
-        <label>Add new comment:</label>
-        <form className="form">
-            <textarea name="comment" placeholder="Comment......"></textarea>
-            <input className="btn submit" type="submit" value="Add Comment" />
-        </form>
-    </article>
+    const likeButtonClick = () => {
+        if(user._id === fish._ownerId){
+            return;
+        }
+        if(fish.likes.includes(user._id)){
+            addNotification('You can not like again!');
+            return;
 
-</section>        
+
+        }
+
+        likeService.like(user._id, fishId)
+        .then(() =>{
+            setFish(state => ({...state, likes: [...state.likes, user._id]}))
+            addNotification('Successfuly liked a fish...', types.success)
+        })
+
+    };
+
+    const userButtons = <Button onClick={likeButtonClick} disabled={fish.likes?.includes(user._id)}>Like</Button>
+
+    return (
+        <>
+        <ConfirmDialog show={showDeleteDialog} onClose={() => setShowDeleteDialog(false)} onSave={deleteHandler} />
+            <section id="game-details">
+                <h1>Game Details</h1>
+                <div className="info-section">
+
+                    <div className="game-header">
+                        <img className="game-img" src={fish.imageUrl} />
+                        <h1>{fish.species}</h1>
+                        <h4>{fish.place}</h4>
+                        
+                        
+                    </div>
+                    <span id='likeButton'>Likes: {fish.likes?.length || 0}</span>
+                    <p className="text">{fish.description}</p>
+
+
+                    <div className="details-comments">
+                        {user._id && (user._id === fish._ownerId
+                        ? ownerButton
+                        : userButtons
+                        )}
+                    </div>
+
+
+
+                </div>
+
+
+                
+
+                <div>
+            
+            
+        </div>
+
+            </section>    
+
+</>
     );
 };
 

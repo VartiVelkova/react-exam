@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import * as fishService from '../../services/fishService.js';
-import FishCard from "../FishList/FishCard/FishCard.js";
+
 import FishList from "../FishList/FishList.js";
 
 const Home = () => {

@@ -20,7 +20,7 @@ const Header = () => {
     );
     return (
 <header>   
-   <h1><Link className="home" to="/">GoFishing</Link></h1>
+   <h1><Link className="home" to="/home">GoFishing</Link></h1>
    <nav>
     <Link to="/all">Everything about fishing</Link>
        { user.email

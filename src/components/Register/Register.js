@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import * as AuthService from '../../services/authService.js';
 import { useAuthContext } from "../../contexts/AuthContext.js";
 
+
 const Register = () => {
     const navigate = useNavigate();
 
@@ -11,7 +12,10 @@ const Register = () => {
     const registerSubmitHandler = (e) => {
         e.preventDefault();
 
-        let {email, password} = Object.fromEntries(new FormData(e.currentTarget));
+        let {email, password, rePassword} = Object.fromEntries(new FormData(e.currentTarget));
+        if(password !== rePassword){
+            return Error('pass or repass are incorect')
+        }
         AuthService.register(email, password)
         .then(authData => {
             login(authData);
@@ -35,7 +39,7 @@ const Register = () => {
             <input type="password" name="password" id="register-password" />
 
             <label htmlFor="con-pass">Confirm Password:</label>
-            <input type="password" name="confirm-password" id="confirm-password" />
+            <input type="password" name="rePassword" id="rePassword" />
 
             <input className="btn submit" type="submit" value="Register" />
 
