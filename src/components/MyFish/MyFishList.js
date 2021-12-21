@@ -13,7 +13,7 @@ const MyFishList = ({
 
            </div>
         )
-        : <h3 className="no-articles">You are not fish in database</h3>
+        : <h3 className="no-articles">You doesn`t have publication in database</h3>
         }
         </>
     );

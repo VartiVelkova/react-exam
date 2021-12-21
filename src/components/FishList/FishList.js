@@ -7,12 +7,12 @@ const FishList = ({
         <>
         {fishes.length > 0
         ? 
-        (<div className="allGames">
+        (<ul className="allGames">
             {fishes.map(f => <FishCard key={f._id} fish={f} />)}
 
-           </div>
+           </ul>
         )
-        :<h3 className="no-articles">No fishing in database</h3>
+        :<h2 className="no-articles">Create a new post</h2>
         }
         </>
     );

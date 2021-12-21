@@ -14,15 +14,16 @@ const Header = () => {
     let userNav = (
         <div id="user">
             <h4>Hello {user.email}</h4>
-           <Link to="/create">Create</Link>
-           <Link to="/logout">Logout</Link>
+            <Link to="/my-fish">Everything about myfishing</Link>
+            <Link to="/create">Create</Link>
+            <Link to="/logout">Logout</Link>
        </div>
     );
     return (
 <header>   
-   <h1><Link className="home" to="/home">GoFishing</Link></h1>
+   <h1><Link className="home" to="/">GoFishing</Link></h1>
    <nav>
-    <Link to="/my-fish">Everything about myfishing</Link>
+    
        { user.email
        ? userNav
        : guest

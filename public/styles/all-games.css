@@ -19,7 +19,7 @@
 }
 
 .allGames {
-    background-color: #fff;
+    background-color: rgb(145, 208, 219);
     border-radius: 10px;
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
     display: flex;
@@ -32,7 +32,7 @@
 }
 
 .allGames-info {
-    padding: 30px;
+    padding: 47px;
     position: relative;
     width: 100%;
 }
@@ -63,6 +63,7 @@
 
 .details-button {
     background-color: #2A265F;
+    border-radius: 10px;
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
     color: #fff;
     font-size: 20px;
