@@ -17,7 +17,7 @@ import { NotificationProvider } from './contexts/NotificationContext.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Edit from './components/Edit/Edit.js';
 import MyFish from './components/MyFish/MyFish.js';
-import MyFishList from './components/MyFish/MyFishList.js';
+
 
 function App() {
   return (  
@@ -28,7 +28,8 @@ function App() {
          <Header />
           <Notification />
           <main>
-            <Routes>        
+            <Routes> 
+            <Route path='/' element={<Home />} />       
               <Route path='/home/*' element={<Home />} />
               <Route path='/login' element={<Login />} />
               <Route path='/register' element={<Register />} />

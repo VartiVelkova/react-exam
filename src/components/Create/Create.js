@@ -20,7 +20,7 @@ const Create = () => {
             description
         }, user.accessToken)
         .then((result) => {
-            navigate('/home')
+            navigate('/my-fish')
         })
     }
     return (
@@ -39,7 +39,7 @@ const Create = () => {
             <label htmlFor="imageUrl">Image:</label>
             <input type="text" id="imageUrl" name="imageUrl" placeholder="Upload a photo..." />
 
-            <label htmlFor="description">Description:</label>
+            <label htmlFor="description">Comments:</label>
             <textarea name="description" id="description"></textarea>
             <input className="btn submit" type="submit" value="Create" />
         </div>

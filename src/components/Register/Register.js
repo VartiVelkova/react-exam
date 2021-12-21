@@ -37,7 +37,7 @@ const Register = () => {
         .then(authData => {
             login(authData);
 
-            navigate('/')
+            navigate('/home')
         })
 
     }

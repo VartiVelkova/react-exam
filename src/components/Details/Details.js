@@ -33,7 +33,7 @@ const Details = () => {
         e.preventDefault();
         fishService.deleteFish(fishId, user.accessToken)
         .then(() => {
-            navigate('/')
+            navigate('/my-fish')
         })
         .finally(() => {
             setShowDeleteDialog(false)
@@ -92,7 +92,7 @@ const Details = () => {
                         
                     </div>
                     <span id='likeButton'>Likes: {fish.likes?.length || 0}</span>
-                    <p className="text">{fish.description}</p>
+                    <p className="text">Comments: {fish.description}</p>
 
 
                     <div className="details-comments">

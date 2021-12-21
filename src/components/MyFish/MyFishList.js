@@ -4,7 +4,7 @@ import MyFishCard from "./MyFishCard/MyFishCard.js";
 const MyFishList = ({
     fishes
 }) => {
-    console.log(fishes)
+    
     return (
         <>
         {fishes.length > 0
