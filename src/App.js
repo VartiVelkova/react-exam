@@ -16,6 +16,8 @@ import { NotificationProvider } from './contexts/NotificationContext.js';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Edit from './components/Edit/Edit.js';
+import MyFish from './components/MyFish/MyFish.js';
+import MyFishList from './components/MyFish/MyFishList.js';
 
 function App() {
   return (  
@@ -30,13 +32,13 @@ function App() {
               <Route path='/home/*' element={<Home />} />
               <Route path='/login' element={<Login />} />
               <Route path='/register' element={<Register />} />
-              <Route path='/logout' element={<Logout />} />
-              
+              <Route path='/logout' element={<Logout />} />              
               <Route path='/details/:fishId' element={<Details />} />
               
               <Route element={<GuardedRoute />}>
               <Route path='/create' element={<Create />} />
               <Route path='/edit/:fishId' element={<Edit />} />
+              <Route path='/my-fish' element={<MyFish />} />
               </Route>
 
             </Routes>

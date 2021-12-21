@@ -1,12 +1,29 @@
 import { useNavigate } from "react-router-dom";
 
+
 import * as AuthService from '../../services/authService.js';
 import { useAuthContext } from "../../contexts/AuthContext.js";
+import { useState } from "react";
+import { Alert } from "react-bootstrap";
 
 
-const Register = () => {
+
+const Register = () => {   
+    const [err, setErrors] = useState({name: false});
+
+    const nameChangeHandler = (e) => {
+        let currentInput = e.target.value;
+        
+        if(currentInput.length < 6){
+            setErrors(state => ({...state, name: 'Your password should be at least 6 characters'}))
+
+        } else if(currentInput.length > 15){
+            setErrors(state => ({...state, name: 'Your password should be max 15 characters'}))
+        } else {
+            setErrors(state => ({...state, name: false}))
+        }
+    }
     const navigate = useNavigate();
-
     const { login } = useAuthContext();
 
     const registerSubmitHandler = (e) => {
@@ -32,11 +49,18 @@ const Register = () => {
             
             <h1>Register</h1>
 
-            <label htmlFor="email">Email:</label>
+            <label htmlFor="email">Email:</label>            
             <input type="email" id="email" name="email" placeholder="maria@email.com" />
+            
+            
+            
 
             <label htmlFor="password">Password:</label>
-            <input type="password" name="password" id="register-password" />
+            <span className="input" style={{borderColor: err.name ? 'red' : 'inherit'}}>
+            <input type="password" name="password" onChange={nameChangeHandler} id="register-password" />
+            </span>
+            <Alert variant="danger" show={err.name}>{err.name}</Alert>
+            
 
             <label htmlFor="con-pass">Confirm Password:</label>
             <input type="password" name="rePassword" id="rePassword" />

@@ -22,7 +22,7 @@ const Header = () => {
 <header>   
    <h1><Link className="home" to="/home">GoFishing</Link></h1>
    <nav>
-    <Link to="/all">Everything about fishing</Link>
+    <Link to="/my-fish">Everything about myfishing</Link>
        { user.email
        ? userNav
        : guest

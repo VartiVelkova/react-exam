@@ -6,8 +6,7 @@ import { useState } from 'react';
 
 
 const Edit = () => {
-    const {fishId} = useParams();
-    const [errors, setErrors] = useState({name: false});
+    const {fishId} = useParams();    
     const [fish, setFish] = useFishState(fishId);
     const navigate = useNavigate()
 
