@@ -15,6 +15,7 @@ import { AuthProvider } from './contexts/AuthContext.js';
 import { NotificationProvider } from './contexts/NotificationContext.js';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Edit from './components/Edit/Edit.js';
 
 function App() {
   return (  
@@ -35,6 +36,7 @@ function App() {
               
               <Route element={<GuardedRoute />}>
               <Route path='/create' element={<Create />} />
+              <Route path='/edit/:fishId' element={<Edit />} />
               </Route>
 
             </Routes>

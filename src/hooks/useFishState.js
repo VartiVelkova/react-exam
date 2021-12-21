@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useState } from 'react'
-import * as fishService from '../services/fishService.js'
+import { useEffect, useMemo, useState } from 'react';
+import * as fishService from '../services/fishService.js';
 
 const useFishState = (fishId) => {
     const [fish, setFish] = useState({});
