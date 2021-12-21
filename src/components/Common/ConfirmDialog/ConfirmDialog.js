@@ -10,15 +10,15 @@ const ConfirmDialog = ({
     return (
         <Modal show={show} onHide={onClose}>
             <Modal.Header closeButton>
-                <Modal.Title>Modal Title</Modal.Title>
+                <Modal.Title>Delete</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <p>{message}</p>
+                <p>Are you sure to delete?</p>
             </Modal.Body>
 
             <Modal.Footer>
                 <Button variant="secondary" onClick={onClose}>Close</Button>
-                <Button variant="primary" onClick={onSave}>Save changes</Button>
+                <Button variant="primary" onClick={onSave}>Delete</Button>
             </Modal.Footer>
 
         </Modal>

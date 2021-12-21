@@ -21,7 +21,9 @@ const useFishState = (fishId) => {
         }
     }, [fishId, controller])
 
-    return [fish, setFish]
+    return [fish, 
+            setFish
+        ]
 };
 
 export default useFishState;

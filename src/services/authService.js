@@ -39,7 +39,7 @@ export const logout = (token) => {
 
 
 export const getUser = () => {
-    let username = localStorage.getItem('username');
+    let username = localStorage.getItem('user');
     return username;
 };
 

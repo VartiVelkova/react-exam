@@ -14,7 +14,7 @@ const FishingCard = () => {
         </div>    
 </div>
 
-<p className="no-articles">No games yet</p>
+<p className="no-articles">No fishing in database</p>
         </>
     );
 };

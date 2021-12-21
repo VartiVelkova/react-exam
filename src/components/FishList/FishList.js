@@ -12,7 +12,7 @@ const FishList = ({
 
            </div>
         )
-        :<h3 className="no-articles">No articles yet</h3>
+        :<h3 className="no-articles">No fishing in database</h3>
         }
         </>
     );

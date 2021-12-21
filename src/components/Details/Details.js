@@ -20,6 +20,7 @@ const Details = () => {
     const {fishId} = useParams();
     const [ fish, setFish ] = useFishState(fishId);
     const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+    
 
     useEffect(() => {
         likeService.getFishLikes(fishId)
@@ -56,7 +57,7 @@ const Details = () => {
     );
 
     const likeButtonClick = () => {
-        if(user._id === fish._ownerId){
+        if(user._id == fish._ownerId){
             return;
         }
         if(fish.likes.includes(user._id)){
@@ -74,13 +75,13 @@ const Details = () => {
 
     };
 
-    const userButtons = <Button onClick={likeButtonClick} disabled={fish.likes?.includes(user._id)}>Like</Button>
+    const userButtons = <Button  onClick={likeButtonClick} disabled={fish.likes?.includes(user._id)}>Like</Button>
 
     return (
         <>
         <ConfirmDialog show={showDeleteDialog} onClose={() => setShowDeleteDialog(false)} onSave={deleteHandler} />
             <section id="game-details">
-                <h1>Game Details</h1>
+                <h1>Fish Details</h1>
                 <div className="info-section">
 
                     <div className="game-header">
@@ -95,7 +96,7 @@ const Details = () => {
 
 
                     <div className="details-comments">
-                        {user._id && (user._id === fish._ownerId
+                        {user._id && (user._id == fish._ownerId
                         ? ownerButton
                         : userButtons
                         )}

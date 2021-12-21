@@ -14,6 +14,8 @@ import Register from './components/Register/Register';
 import { AuthProvider } from './contexts/AuthContext.js';
 import { NotificationProvider } from './contexts/NotificationContext.js';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 function App() {
   return (  
     <ErrorBoudary>
@@ -28,11 +30,11 @@ function App() {
               <Route path='/login' element={<Login />} />
               <Route path='/register' element={<Register />} />
               <Route path='/logout' element={<Logout />} />
-              <Route path='/create' element={<Create />} />
+              
               <Route path='/details/:fishId' element={<Details />} />
               
               <Route element={<GuardedRoute />}>
-               
+              <Route path='/create' element={<Create />} />
               </Route>
 
             </Routes>

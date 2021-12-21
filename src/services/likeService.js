@@ -1,6 +1,6 @@
 import * as request from './requester.js';
 
-const baseURL = 'http://localhost:3030/jsonstore/data';
+const baseURL = 'http://localhost:3030/data';
 
 export const like = (userId, fishId) => request.post(`${baseURL}/likes`, {userId, fishId});
 
