@@ -20,6 +20,7 @@ class ErrorBoudary extends Component {
 
     render(){
         if(this.state.error) {
+            console.log('ERRRRRRRRRR')
             return (
                 <h1>404 Not Found!</h1>
             )

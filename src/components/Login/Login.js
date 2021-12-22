@@ -16,7 +16,7 @@ const Login = () => {
         .then((authData) => {
             login(authData);
             addNotification('You logged in successfuly', types.success);
-            navigate('/home')
+            navigate('/')
         })
         .catch((err) => console.log(err))
     }
